@@ -9,10 +9,16 @@
 import java.util.Scanner;
 
 final class FindEnergy {
+
+    /**
+     * Constants.
+     */
+    public static final int LIGHTSPEED = 299792458;
+
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException
-    * if this is ever called
+    * if this is ever called.
     *
     * @throws IllegalStateException if this is ever called
     */
@@ -20,38 +26,20 @@ final class FindEnergy {
         throw new IllegalStateException("Cannot be instantiated");
     }
 
-    public static void main(final String[] args) {
-        // Get input
-        final Scanner input = new Scanner(System.in);
-        System.out.print("Enter mass (kg): ");
-
-        // Check if input is valid
+    public static void main(String[] args) {
         try {
-            final double mass = Double.parseDouble(input.nextLine());
-            if (mass < 0) {
-                // Input is invalid
-                throw new NumberFormatException();
-            } else {
-                // Calculate energy
-                final double energyReleased = mass * Math.pow(
-                    2.998 * Math.pow(10, 8), 2
-                );
-
-                // Print output
-                System.out.println(
-                    "A " + mass + "kg object would produce "
-                    + energyReleased + " J of energy."
-                );
-            }
-        } catch (NumberFormatException e) {
-            // Input is invalid
-            System.out.println("Invalid input.");
+            final Scanner input = new Scanner(System.in);
+            System.out.print("Enter the mass of an object in kilograms: ");
+            final double mass = input.nextDouble();
+            final double energy = mass * Math.pow(LIGHTSPEED, 2);
+            System.out.println(mass + "kg of mass would produce "
+                            + String.format("%.6e", energy) + "J of energy.");
+            input.close();
+        } catch (InputMismatchException ex) {
+            System.out.println("Invalid Input");
         }
 
-        // Close scanner
-        input.close();
-
-        // Show the program as done
+        // Shows program is done
         System.out.println("\nDone.");
     }
 }
