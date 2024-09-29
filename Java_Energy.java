@@ -32,7 +32,7 @@ final class FindEnergy {
      * Takes mass input from the user, calculates energy using E=mc^2,
      * and prints the result.
      *
-     * @param args command-line arguments (not used).
+     * @param args Command-line arguments (not used).
      */
     public static void main(final String[] args) {
         try {
